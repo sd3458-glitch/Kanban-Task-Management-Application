@@ -1,0 +1,416 @@
+/* 
+  styles.css - Main stylesheet for our Kanban Board
+  Just basic CSS to make things look decent
+*/
+
+/* --- General Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  min-height: 100vh;
+  transition: background-color 0.3s;
+}
+
+/* --- App Container --- */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Header --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  font-size: 28px;
+  color: #222;
+}
+
+.theme-toggle {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.theme-toggle:hover {
+  background-color: #ddd;
+}
+
+/* --- Tools Bar (Search, Filter, Column Add) --- */
+.tools-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tools-bar input,
+.tools-bar select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-column-box {
+  display: flex;
+  gap: 5px;
+  margin-left: auto; /* push to the right if there's space */
+}
+
+.add-column-box button {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-column-box button:hover {
+  background-color: #31b0d5;
+}
+
+
+/* --- Task Form --- */
+.task-form {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.task-form .form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  min-width: 150px;
+}
+
+.task-form .priority-group {
+  flex: 1;
+}
+
+.task-form label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+  outline: none;
+  border-color: #4a90d9;
+}
+
+.task-form .add-btn {
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  height: min-content;
+  white-space: nowrap;
+}
+
+.task-form .add-btn:hover {
+  background-color: #357abd;
+}
+
+/* --- Board Layout --- */
+.board {
+  display: flex;
+  gap: 16px;
+  min-height: 400px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+/* --- Column --- */
+.column {
+  background-color: #e8e8e8;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 320px;
+  flex: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.column.drag-over {
+  background-color: #d0e0f0;
+  border: 2px dashed #4a90d9;
+}
+
+.column-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.task-count {
+  font-size: 12px;
+  font-weight: normal;
+  color: #777;
+  margin-left: 6px;
+}
+
+.delete-column-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.delete-column-btn:hover {
+  color: #d9534f;
+}
+
+/* --- Task Card --- */
+.task-card {
+  background-color: #fffde7;
+  border: 1px solid #e0dcc5;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.task-card.dragging {
+  opacity: 0.5;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-description {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.priority-badge {
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.edit-btn {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #4cae4c;
+}
+
+.delete-btn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c9302c;
+}
+
+/* --- Edit Mode inside card --- */
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.edit-form .save-btn {
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.edit-form .save-btn:hover {
+  background-color: #357abd;
+}
+
+.edit-form .cancel-btn {
+  background-color: #999;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+/* --- DARK THEME OVERRIDES --- */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #eaeaea;
+}
+
+body.dark-mode .app-title {
+  color: #eaeaea;
+}
+
+body.dark-mode .theme-toggle {
+  background-color: #333;
+  color: #eaeaea;
+  border-color: #444;
+}
+
+body.dark-mode .tools-bar input,
+body.dark-mode .tools-bar select {
+  background-color: #333;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-mode .task-form {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .task-form label {
+  color: #bbb;
+}
+
+body.dark-mode .task-form input,
+body.dark-mode .task-form textarea,
+body.dark-mode .task-form select {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-mode .column {
+  background-color: #2b2b2b;
+}
+
+body.dark-mode .column-title {
+  border-bottom-color: #444;
+}
+
+body.dark-mode .task-count {
+  color: #aaa;
+}
+
+body.dark-mode .task-card {
+  background-color: #3a3a3a;
+  border-color: #444;
+}
+
+body.dark-mode .card-title {
+  color: #eee;
+}
+
+body.dark-mode .card-description {
+  color: #ccc;
+}
+
+body.dark-mode .edit-form input,
+body.dark-mode .edit-form textarea,
+body.dark-mode .edit-form select {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+  .board {
+    flex-direction: column;
+  }
+
+  .tools-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .add-column-box {
+    margin-left: 0;
+  }
+}
