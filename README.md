@@ -10,8 +10,15 @@ A clean, beginner-friendly single-page web application to manage tasks using a K
 *   **Priority Flags**: Assign "High", "Medium", or "Low" priority to tasks, complete with color-coded badges.
 *   **Search and Filter**: Instantly find tasks using the text search bar, or filter the board by priority level.
 *   **State Persistence**: All data (tasks, custom columns, and theme preference) is saved securely in your browser's local storage so it survives page refreshes.
-*   **Dark Mode**: Built-in toggle to switch the entire application between light and dark themes.
 *   **Responsive Layout**: Designed to work beautifully on both desktop screens and mobile devices.
+
+## Screenshots
+
+### Light Mode
+![Light Mode Board](screenshots/light_mode.png)
+
+### Dark Mode & Custom Columns
+![Dark Mode Board](screenshots/dark_mode.png)
 
 ## Technologies Used
 
